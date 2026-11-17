@@ -1,3 +1,23 @@
-# ImageUpscaler2x
+# 圖片批次放大 2 倍（Android）
 
-Android app for batch 2x image enlargement. Select a folder, process supported images in that folder, and save enlarged copies in a separate output folder.
+這是一個 Android App，可選擇手機中的資料夾，將第一層的圖片批次放大兩倍，並把結果儲存在另一個輸出資料夾，不會覆蓋原圖。
+
+## 功能
+- 透過 Android 系統資料夾選擇器選擇來源資料夾。
+- 批次處理資料夾第一層內的 JPG、JPEG、PNG、WebP 圖片。
+- 寬度、高度各放大 2 倍，例如 1500 × 3000 → 3000 × 6000。
+- 使用 Android Bitmap 高品質濾波縮放。
+- 輸出至來源資料夾內的「圖片放大2倍」資料夾，檔名加上 `_2x`；既有檔案不會被覆蓋。
+- 保留 PNG 透明度。
+- 顯示處理進度與成功、略過、失敗數量，可取消後續處理。
+
+## 限制
+- 目前只掃描所選資料夾第一層，不會遞迴處理子資料夾。
+- 不處理 GIF 動畫、HEIC 或 AVIF。
+- 為降低記憶體不足的風險，放大後超過 2,400 萬像素的圖片會略過。1500 × 3000 放大成 3000 × 6000（1,800 萬像素）可處理。
+- 這是一般高品質插值放大，不是 AI 超解析度；增加像素尺寸不代表能還原原圖不存在的細節。
+
+## 編譯 APK
+GitHub Actions 會在推送到 `main` 分支時自動編譯。成功後，在儲存庫的 **Actions** 頁面打開最新的 **Build Android APK** 工作流程，於 **Artifacts** 下載 `ImageUpscaler2x-debug-apk`，解壓後即可取得 `app-debug.apk`。
+
+也可以使用 Android Studio 開啟專案，選擇 **Build > Build Bundle(s) / APK(s) > Build APK(s)**。
